@@ -12,17 +12,21 @@ import { ProductCard } from './product-card';
   template: `
     <div class="container mt-4">
       <div class="row">
-        @for (pizza of pizzas(); track pizza.id) {
-          <div class="col-md-4 mb-4">
-            <app-product-card
-              [pizza]="pizza"
-              [quantity]="getQuantity(pizza.id)"
-              (add)="addPizza($event)"
-              (remove)="removePizza($event)"
-              (delete)="deletePizza($event)"
-            >
-            </app-product-card>
-          </div>
+        @if (hasError()) {
+          <div class="alert alert-danger">Error loading pizzas.</div>
+        } @else {
+          @for (pizza of pizzas(); track pizza.id) {
+            <div class="col-md-4 mb-4">
+              <app-product-card
+                [pizza]="pizza"
+                [quantity]="getQuantity(pizza.id)"
+                (add)="addPizza($event)"
+                (remove)="removePizza($event)"
+                (delete)="deletePizza($event)"
+              >
+              </app-product-card>
+            </div>
+          }
         }
       </div>
     </div>
@@ -32,6 +36,7 @@ import { ProductCard } from './product-card';
 })
 export class Products implements OnInit {
   pizzas = signal<Pizza[]>([]);
+  hasError = signal(false);
 
   constructor(
     private productService: ProductService,
@@ -39,8 +44,14 @@ export class Products implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.productService.getPizzas().subscribe((data) => {
-      this.pizzas.set(data);
+    this.productService.getPizzas().subscribe({
+      next: (data) => {
+        this.pizzas.set(data);
+      },
+      error: (err) => {
+        console.error('Error loading pizzas', err);
+        this.hasError.set(true);
+      },
     });
   }
 
