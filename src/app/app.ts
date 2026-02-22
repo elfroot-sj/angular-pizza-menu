@@ -30,7 +30,7 @@ import { RouterLinkWithHref, RouterOutlet } from '@angular/router';
               <a class="nav-link" routerLink="/products">Products</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Contacts</a>
+              <a class="nav-link" routerLink="/cart">Cart</a>
             </li>
           </ul>
         </div>

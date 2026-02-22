@@ -18,7 +18,7 @@ import { RouterLinkWithHref } from '@angular/router';
   `,
   styles: `
     .home {
-      background-image: url('../../assets/hero-home.jpg');
+      background-image: url('/assets/hero-home.jpg');
       background-position: center;
       background-repeat: no-repeat;
       background-size: cover;
