@@ -43,7 +43,7 @@ export class Cart {
   checkout() {
     alert('Thank you for your purchase! 🍕');
 
-    this.cartService.clearCart();
+    this.cartService.clearCart(); // svuota il carrello dopo aver cliccato sul bottone di acquisto
     this.router.navigate(['/home']);
   }
 }
