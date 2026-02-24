@@ -15,7 +15,7 @@ export class CartService {
 
   cartItems = this.items.asReadonly(); // versione readonly del signal per evitare modifiche esterne al servizio (nessun componente può modificare direttamente items, ma solo tramite i metodi addPizza, removePizza, clearCart)
 
-  total = computed(() => this.items().reduce((acc, item) => acc + item.price * item.quantity, 0)); //ogni volta che items() cambia, total viene ricalcolato automaticamente, garantendo che il totale sia sempre aggiornato con lo stato corrente del carrello
+  total = computed(() => this.items().reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2)); //ogni volta che items() cambia, total viene ricalcolato automaticamente, garantendo che il totale sia sempre aggiornato con lo stato corrente del carrello
 
   addPizza(pizza: Pizza) {
     this.items.update((items) => {

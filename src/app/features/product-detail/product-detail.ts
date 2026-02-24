@@ -28,14 +28,15 @@ import { Pizza } from '../../models/pizza.model';
       </div>
     }
   `,
+  styles: ``,
 })
 export class ProductDetail {
   private route = inject(ActivatedRoute);
   private productService = inject(ProductService);
 
   pizza = signal<Pizza | null>(null);
-  loading = signal(true);
-  notFound = signal(false);
+  loading = signal(true); // per gestire lo stato di caricamento
+  notFound = signal(false); // per gestire il caso in cui la pizza non viene trovata
 
   constructor() {
     const id = Number(this.route.snapshot.paramMap.get('id')); // ottengo l'id dalla route

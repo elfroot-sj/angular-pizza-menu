@@ -43,6 +43,41 @@ import { RouterLinkWithHref } from '@angular/router';
       color: white;
       cursor: grab;
     }
+
+    @media screen and (max-width: 576px) {
+      .container {
+        max-width: 50%;
+        justify-content: start;
+        margin-left: 3%;
+      }
+      .container h1 {
+        font-size: 1.8rem;
+      }
+      .container a {
+        padding: 0;
+      }
+    }
+
+    @media screen and (max-width: 992px) {
+      .container {
+        max-width: 50%;
+        margin-left: 2%;
+      }
+    }
+
+    @media screen and (max-width: 1200px) {
+      .container {
+        max-width: 50%;
+        margin-left: 1%;
+      }
+    }
+
+    @media screen and (max-width: 1400px) {
+      .container {
+        max-width: 50%;
+        margin-left: 1%;
+      }
+    }
   `,
 })
 export class Home {}
